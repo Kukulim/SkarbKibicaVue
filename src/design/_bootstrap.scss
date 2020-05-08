@@ -1,0 +1,15 @@
+@import 'bootstrap/scss/bootstrap';
+
+$green: #42b883;
+$green-light: #42b883;
+
+/* OVERLOADS */
+
+.navbar-brand{
+    font-size: 36px;
+    span{
+
+        font-weight: 700;
+        color:$green;
+    }
+}
