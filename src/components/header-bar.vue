@@ -1,6 +1,6 @@
 <template>
   <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <div class="container">
         <HeaderBarBrand></HeaderBarBrand>
         <button
@@ -16,8 +16,8 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
               <HeaderLinks></HeaderLinks>
             </li>
           </ul>
