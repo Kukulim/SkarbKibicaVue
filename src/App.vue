@@ -2,7 +2,6 @@
   <div id="app">
     <HeaderBar />
     <router-view />
-
   </div>
 </template>
 
