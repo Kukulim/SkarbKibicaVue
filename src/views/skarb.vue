@@ -1,59 +1,30 @@
 <template>
   <div class="container">
     <h1 class="mt-5 mb-3">Skarb Kibica:</h1>
-    <form>
-
-      <div class="form-group">
-        <label for="id">Id:</label>
-        <label class="input form-control" id="id">{{ klub.id }}</label>
+<div class="column is-8" v-if="teams">
+  <ul class="list-group" v-if="!selectedTeam">
+      <div v-for="team in teams" :key="team.id" class="list-group-item">
+        <div class="card">
+          <div class="card-body">
+            <h5 :key="team.name" class="card-title">{{ team.name }}</h5>
+            <button class="btn btn-primary" @click="selectTeam(team)">Zaznacz <i class="fas fa-check"></i></button>
+          </div>
+        </div>
       </div>
+  </ul>
+</div>
 
-      <div class="form-group">
-        <label for="name">Nazwa klubu:</label>
-        <input class="input form-control" id="name" v-model="klub.name" />
-      </div>
+  <TeamDetails :team="selectedTeam" v-if="selectedTeam" @save="saveTeam" @cancel="cancelTeam"/>
 
-      <div class="form-group">
-        <label for="name">Rok załorzenia:</label>
-        <input class="input form-control" id="name" v-model="klub.created" />
-      </div>
-
-      <div class="form-group">
-        <label for="name">Barwy klubowe:</label>
-        <input class="input form-control" id="name" v-model="klub.clubColors" />
-      </div>
-
-      <div class="form-group">
-        <label for="name">Stadion:</label>
-        <input class="input form-control" id="name" v-model="klub.stadium.name" />
-      </div>
-
-      <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="showMore" v-model="showMore" />
-        <label for="showMore" class="form-check-label">Szczególy</label>       
-      </div>
-
-      <div class="form-group" v-show="showMore">
-        <label for="name">Adress:</label>
-        <input class="input form-control" id="name" v-model="klub.stadium.adress" />
-      </div>
-
-      <div class="form-group" v-show="showMore">
-        <label for="name">Ilość miejsc:</label>
-        <input class="input form-control" id="name" v-model="klub.stadium.seats" />
-      </div>
-
-    </form>
   </div>
 </template>
 
 <script>
-export default {
-  name: "Kluby",
-  data() {
-    return {
-      showMore: false,
-      klub: {
+
+import TeamDetails from './klub-details';
+
+const myteams = [
+  {
         id: 1,
         name: "Raków Częstochowa",
         clubColors: "Czerwono-niebieskie",
@@ -63,8 +34,42 @@ export default {
           adress: "Limanowskiego 83",
           seats: 4200
         }
-      }
-    };
+  },
+  {
+        id: 2,
+        name: "Klub Sportowy Częstochowa",
+        clubColors: "Biało-bordowe",
+        created: 1934,
+        stadium: {
+          name: "Stadion Piłkarski",
+          adress: "Sabinowska 11/23",
+          seats: 960
+        }
   }
+]
+export default {
+  name: "Teams",
+  data() {
+    return {
+      selectedTeam: undefined,
+      showMore: false,
+      teams: myteams,
+    };
+  },
+  components: { TeamDetails },
+  methods:{
+    selectTeam(team) {
+      this.selectedTeam = team;
+    },
+    cancelTeam(){
+      this.selectedTeam = undefined;
+    },
+    saveTeam(team) {
+      const index = this.teams.findIndex(t => t.id === team.id);
+      this.teams.splice(index, 1, team);
+      this.teams = [...this.teams];
+      this.selectedTeam = undefined;
+    },
+  },
 };
 </script>
