@@ -32,7 +32,7 @@ const myteams = [
         stadium: {
           name: "Miejski Stadion Piłkarski",
           adress: "Limanowskiego 83",
-          seats: 4200
+          seats: 4200,
         }
   },
   {
@@ -43,9 +43,20 @@ const myteams = [
         stadium: {
           name: "Stadion Piłkarski",
           adress: "Sabinowska 11/23",
-          seats: 960
+          seats: 960,
         }
-  }
+  },
+    {
+        id: 3,
+        name: "TS Podbeskidzie Spółka Akcyjna",
+        clubColors: "Czerwono-biało-niebieskie",
+        created: 1995,
+        stadium: {
+          name: "Stadion Miejski",
+          adress: "Rychlińskiego 21",
+          seats: 15316,
+        }
+  },
 ]
 export default {
   name: "Teams",

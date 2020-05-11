@@ -40,8 +40,14 @@
       <input class="input form-control" id="name" v-model="newteam.stadium.seats" />
     </div>
     <div class="mt-5">
-        <button class="btn btn-success m-2" @click="saveTeam()">Zapisz <i class="fas fa-save"></i></button>
-        <button class="btn btn-warning" @click="cancelTeam()">Anuluj <i class="fas fa-undo"></i></button>
+      <button class="btn btn-success m-2" @click="saveTeam()">
+        Zapisz
+        <i class="fas fa-save"></i>
+      </button>
+      <button class="btn btn-warning" @click="cancelTeam()">
+        Anuluj
+        <i class="fas fa-undo"></i>
+      </button>
     </div>
   </form>
 </template>
@@ -50,25 +56,25 @@
 export default {
   name: "Team-Details",
   props: {
-        team: {
+    team: {
       type: Object,
-      default: () => {},
-    },
+      default: () => {}
+    }
   },
   data() {
     return {
       showMore: false,
-      newteam: { ...this.team },
+      newteam: { ...this.team }
     };
   },
-    methods: {
+  methods: {
     cancelTeam() {
-      this.$emit('cancel');
+      this.$emit("cancel");
     },
     saveTeam() {
-      this.$emit('save', this.newteam);
-    },
-    },
-}
+      this.$emit("save", this.newteam);
+    }
+  }
+};
 </script>
 
