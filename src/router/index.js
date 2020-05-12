@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Skarb from "../views/skarb.vue";
+import PageNotFound from "../views/notFound.vue";
 
 Vue.use(VueRouter);
 
@@ -16,9 +17,9 @@ const routes = [
   },
   {
     path: "/skarb/:id",
-    name: "klub-details",
+    name: "team-details",
     component: () =>
-      import(/* webpackChunkName: "teams" */ "../views/klub-details.vue"),
+      import(/* webpackChunkName: "teams" */ "../views/team-details.vue"),
     props: (r) => ({ id: parseInt(r.params.id) }),
   },
   {
@@ -29,6 +30,10 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/about.vue"),
+  },
+  {
+    path: "*",
+    component: PageNotFound,
   },
 ];
 

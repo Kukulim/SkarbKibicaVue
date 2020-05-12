@@ -7,7 +7,7 @@
         <div class="card">
           <div class="card-body">
             <h5 :key="team.name" class="card-title">{{ team.name }}</h5>
-            <router-link :to="{name: 'klub-details', params:{id: team.id}}"
+            <router-link :to="{name: 'team-details', params:{id: team.id}}"
               tag="button" 
               class="btn btn-primary" 
               >
