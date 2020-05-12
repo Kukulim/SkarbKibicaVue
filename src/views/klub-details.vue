@@ -1,28 +1,30 @@
 <template>
+  <div class="container">
+    <h1 class="mt-5 mb-3">Szczególy klubu:</h1>
   <form>
     <div class="form-group">
       <label for="id">Id:</label>
-      <label class="input form-control" id="id">{{ newteam.id }}</label>
+      <label class="input form-control" id="id">{{ team.id }}</label>
     </div>
 
     <div class="form-group">
       <label for="name">Nazwa klubu:</label>
-      <input class="input form-control" id="name" v-model="newteam.name" />
+      <input class="input form-control" id="name" v-model="team.name" />
     </div>
 
     <div class="form-group">
       <label for="name">Rok załorzenia:</label>
-      <input class="input form-control" id="name" v-model="newteam.created" />
+      <input class="input form-control" id="name" v-model="team.created" />
     </div>
 
     <div class="form-group">
       <label for="name">Barwy klubowe:</label>
-      <input class="input form-control" id="name" v-model="newteam.clubColors" />
+      <input class="input form-control" id="name" v-model="team.clubColors" />
     </div>
 
     <div class="form-group">
       <label for="name">Stadion:</label>
-      <input class="input form-control" id="name" v-model="newteam.stadium.name" />
+      <input class="input form-control" id="name" v-model="team.stadium.name" />
     </div>
 
     <div class="form-check">
@@ -32,12 +34,12 @@
 
     <div class="form-group" v-show="showMore">
       <label for="name">Adress:</label>
-      <input class="input form-control" id="name" v-model="newteam.stadium.adress" />
+      <input class="input form-control" id="name" v-model="team.stadium.adress" />
     </div>
 
     <div class="form-group" v-show="showMore">
       <label for="name">Ilość miejsc:</label>
-      <input class="input form-control" id="name" v-model="newteam.stadium.seats" />
+      <input class="input form-control" id="name" v-model="team.stadium.seats" />
     </div>
     <div class="mt-5">
       <button class="btn btn-success m-2" @click="saveTeam()">
@@ -50,6 +52,7 @@
       </button>
     </div>
   </form>
+  </div>
 </template>
 
 <script>
@@ -61,14 +64,15 @@ export default {
     id: {
       type: Number,
       default: 0,
-    }
+    },
   },
   data() {
     return {
+      showMore: false,
       team:{},
     };
   },
-  async created() {
+  async mounted() {
     this.team = await data.getTeam(this.id);
   },
   methods: {
@@ -76,7 +80,7 @@ export default {
       this.$emit("cancel");
     },
     saveTeam() {
-      this.$emit("save", this.newteam);
+      this.$emit("save", this.team);
     },
     
   }
