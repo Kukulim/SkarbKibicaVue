@@ -20,55 +20,28 @@
 </template>
 
 <script>
-
+import { data } from '../shared';
 import TeamDetails from './klub-details';
 
-const myteams = [
-  {
-        id: 1,
-        name: "Raków Częstochowa",
-        clubColors: "Czerwono-niebieskie",
-        created: 1921,
-        stadium: {
-          name: "Miejski Stadion Piłkarski",
-          adress: "Limanowskiego 83",
-          seats: 4200,
-        }
-  },
-  {
-        id: 2,
-        name: "Klub Sportowy Częstochowa",
-        clubColors: "Biało-bordowe",
-        created: 1934,
-        stadium: {
-          name: "Stadion Piłkarski",
-          adress: "Sabinowska 11/23",
-          seats: 960,
-        }
-  },
-    {
-        id: 3,
-        name: "TS Podbeskidzie Spółka Akcyjna",
-        clubColors: "Czerwono-biało-niebieskie",
-        created: 1995,
-        stadium: {
-          name: "Stadion Miejski",
-          adress: "Rychlińskiego 21",
-          seats: 15316,
-        }
-  },
-]
+
 export default {
   name: "Teams",
   data() {
     return {
       selectedTeam: undefined,
       showMore: false,
-      teams: myteams,
+      teams: [],
     };
   },
   components: { TeamDetails },
+  async created(){
+    await this.loadTeams();
+  },
   methods:{
+    async loadTeams(){
+      this.teams = [],
+      this.teams = await data.getTeams();
+    },
     selectTeam(team) {
       this.selectedTeam = team;
     },
