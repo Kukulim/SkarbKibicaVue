@@ -53,19 +53,23 @@
 </template>
 
 <script>
+import { data } from '../shared';
+
 export default {
   name: "Team-Details",
   props: {
-    team: {
-      type: Object,
-      default: () => {}
+    id: {
+      type: Number,
+      default: 0,
     }
   },
   data() {
     return {
-      showMore: false,
-      newteam: { ...this.team }
+      team:{},
     };
+  },
+  async created() {
+    this.team = await data.getTeam(this.id);
   },
   methods: {
     cancelTeam() {
@@ -73,7 +77,8 @@ export default {
     },
     saveTeam() {
       this.$emit("save", this.newteam);
-    }
+    },
+    
   }
 };
 </script>

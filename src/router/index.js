@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Skarb from "../views/skarb.vue";
+import klubDetails from "../views/klub-details.vue";
 
 Vue.use(VueRouter);
 
@@ -13,6 +14,12 @@ const routes = [
     path: "/skarb",
     name: "skarb",
     component: Skarb,
+  },
+  {
+    path: "/skarb/:id",
+    name: "klub-details",
+    component: klubDetails,
+    props: r =>({ id: parseInt(r.params.id) }),
   },
   {
     path: "/about",
