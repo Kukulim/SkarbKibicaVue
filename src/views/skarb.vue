@@ -17,6 +17,7 @@
         </div>
       </div>
   </ul>
+  <div class="alert alert-warning" role="alert" v-show="message">{{ message }}</div>
 </div>
 </div>
 </template>
@@ -29,6 +30,7 @@ export default {
   data() {
     return {
       teams: [],
+      message: '',
     };
   },
   async created(){
@@ -36,17 +38,10 @@ export default {
   },
   methods:{
     async loadTeams(){
-      this.teams = [],
+      this.teams = [];
+      this.message = "Pobieranie danych z bazy, proszę czekać...";
       this.teams = await data.getTeams();
-    },
-    cancelTeam(){
-      this.selectedTeam = undefined;
-    },
-    saveTeam(team) {
-      const index = this.teams.findIndex(t => t.id === team.id);
-      this.teams.splice(index, 1, team);
-      this.teams = [...this.teams];
-      this.selectedTeam = undefined;
+      this.message = '';
     },
   },
 };

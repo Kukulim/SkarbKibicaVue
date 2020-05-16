@@ -25,8 +25,17 @@ const getTeam = async function(id){
   }
 };
 
+const updateTeam = async function(team){
+  try{
+    await axios.put(`https://localhost:5001/api/teams/${team.id}`, team, {headers: {"Content-Type": "application/json"}});
+  } catch (error) {
+    console.error(error);
+    return null;
+}};
+
 
 export const data = {
     getTeams,
     getTeam,
+    updateTeam
 }

@@ -11,7 +11,19 @@ $green: #78C2AD;
         font-size: 45px;
     }
 }
+
 .list-group-item {
-    background-color: rgba(146, 214, 187, 0.445) !important;
+    background-color: red;//rgba(146, 214, 187, 0.445) !important;
     margin-top: 2px;
+    border-radius: 5px;
+}
+.alert{
+    font-size: 35px;
+}
+.navbar-dark .navbar-nav .nav-link[data-v-066f9c45] {
+    border-radius: 8px;
+    &:hover{
+        background-color: rebeccapurple;
+    }
+
 }
