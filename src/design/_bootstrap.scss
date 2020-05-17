@@ -25,5 +25,11 @@ $green: #78C2AD;
     &:hover{
         background-color: rebeccapurple;
     }
-
+}
+.add-button{
+    background-color: rebeccapurple !important;
+    border-color: rebeccapurple !important;
+    &:hover{
+        background-color: #571994 !important;
+    }
 }

@@ -27,7 +27,7 @@
       <input class="input form-control" id="stadium.name" v-model="team.stadium.name" />
     </div>
 
-    <div class="form-check">
+    <div class="form-check" v-if="team.id">
       <input type="checkbox" class="form-check-input" id="showMore" v-model="showMore" />
       <label for="showMore" class="form-check-label">Szczególy</label>
     </div>
@@ -73,9 +73,25 @@ export default {
       team:{},
     };
   },
-  async mounted() {
+  async created() {
+    if (this.isAddMode) {
+      this.team = {
+        id: undefined,
+        name:'',
+        created: '',
+        clubColors: '',
+        stadium: {
+          name: '',
+          adress:'',
+          seats:''
+        },
+      };
+      this.loading = false;
+      this.showMore = true;
+    } else {
     this.team = await data.getTeam(this.id);
     this.loading = false;
+    }
   },
   methods: {
     cancelTeam() {
@@ -84,9 +100,13 @@ export default {
     async saveTeam() {
       await data.updateTeam(this.team);
       this.cancelTeam();
+    },    
+  },
+  computed: {
+    isAddMode() {
+      return !this.id;
     },
-    
-  }
+  },
 };
 </script>
 
