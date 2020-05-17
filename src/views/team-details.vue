@@ -46,8 +46,12 @@
         <span>Zapisz</span>
         <i class="fas fa-save"></i>
       </button>
-      <button class="btn btn-warning" @click="cancelTeam()">
+      <button class="btn btn-info m-2" @click="cancelTeam()">
         <span>Anuluj</span>
+        <i class="fas fa-undo"></i>
+      </button>
+      <button class="btn btn-warning m-auto" @click="deleteTeam()" v-if="team.id">
+        <span>Usuń</span>
         <i class="fas fa-undo"></i>
       </button>
     </div>
@@ -98,9 +102,19 @@ export default {
       this.$router.push({ name: 'skarb' });
     },
     async saveTeam() {
+      if(this.isAddMode){
+        await data.createTeam(this.team);
+        this.cancelTeam();
+      }
+      else{
       await data.updateTeam(this.team);
       this.cancelTeam();
-    },    
+      }
+    },
+    async deleteTeam(){
+      await data.deleteTeam(this.team.id);
+      this.cancelTeam();
+    },
   },
   computed: {
     isAddMode() {

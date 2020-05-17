@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1 class="mt-5 mb-3">Skarb Kibica:</h1>
-    <div class="column is-8" v-if="teams">
+    <div class="column is-8" v-if="!loading">
       <ul class="list-group">
         <div v-for="team in teams" :key="team.id" class="list-group-item">
           <div class="card">
@@ -20,7 +20,7 @@
         </div>
       </ul>
       <div class="alert alert-warning" role="alert" v-show="message">{{ message }}</div>
-      <router-link :to="{name: 'team-details', params:{id:0}}" tag="button" class="btn btn-primary m-5 add-button">
+      <router-link :to="{name: 'team-details', params:{id:0}}" tag="button" class="btn btn-primary m-5 add-button" v-if="!loading">
         <span>Dodaj drużynę</span>
         <i class="fa fa-plus ml-3" aria-hidden="true"></i>
       </router-link>
@@ -36,11 +36,13 @@ export default {
   data() {
     return {
       teams: [],
+      loading: true,
       message: ""
     };
   },
   async created() {
     await this.loadTeams();
+    this.loading = false;
   },
   methods: {
     async loadTeams() {
