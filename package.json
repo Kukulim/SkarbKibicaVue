@@ -17,6 +17,7 @@
     "vue": "^2.6.11",
     "vue-router": "^3.1.6",
     "vuejs-dialog": "^1.4.1",
+    "vuelidate": "^0.7.5",
     "webpack-dev-server": "^3.11.0"
   },
   "devDependencies": {
@@ -36,17 +37,20 @@
   },
   "eslintConfig": {
     "root": true,
+    "no-mixed-spaces-and-tabs": [
+      2,
+      "smart-tabs"
+    ],
     "env": {
       "node": true
     },
     "extends": [
-      "plugin:vue/essential",
+      "plugin:vue/strongly-recommended",
       "eslint:recommended"
     ],
     "parserOptions": {
       "parser": "babel-eslint"
-    },
-    "rules": {}
+    }
   },
   "browserslist": [
     "> 1%",

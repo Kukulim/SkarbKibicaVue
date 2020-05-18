@@ -2,25 +2,43 @@
   <div class="container">
     <h1 class="mt-5 mb-3">Szczególy klubu:</h1>
   <div v-if="!loading">
-    <div class="form-group">
-      <label for="id">Id:</label>
-      <label class="input form-control" id="id">{{ team.id }}</label>
-    </div>
 
-    <div class="form-group">
-      <label for="name">Nazwa klubu:</label>
-      <input class="input form-control" id="name" v-model="team.name" />
-    </div>
+                <div class="form-group">
+                  <label>Nazwa klubu:</label>
+                  <input class="input form-control" 
+                  v-model.trim="$v.team.name.$model"
+                  :class="{'is-invalid' :$v.team.name.$error, 'is-valid':!$v.team.name.$invalid}"/>
+                  <div class="valid-feedback">Nazwa klubu jest ok</div>
+                  <div class="invalid-feedback">
+                    <span v-if="!$v.team.name.required">Nzawa klubu jest wymagana</span>
+                    <span v-if="!$v.team.name.minLength">Nzawa klubu misi mieć conajmniej {{ $v.team.name.$params.minLength.min }}</span>
+                    <span></span>
+                  </div>
+                </div>
 
-    <div class="form-group">
-      <label for="created">Rok załorzenia:</label>
-      <input class="input form-control" id="created" v-model="team.created" />
-    </div>
+                <div class="form-group">
+                  <label>Rok załorzenia:</label>
+                  <input class="input form-control" 
+                  v-model.trim="$v.team.created.$model"
+                  :class="{'is-invalid' :$v.team.created.$error, 'is-valid':!$v.team.created.$invalid}"/>
+                  <div class="valid-feedback">Rok załorzenia jest ok</div>
+                  <div class="invalid-feedback">
+                    <span v-if="!$v.team.created.required">Rok załorzenia jest wymagany</span>
+                    <span></span>
+                  </div>
+                </div>
 
-    <div class="form-group">
-      <label for="clubColors">Barwy klubowe:</label>
-      <input class="input form-control" id="clubColors" v-model="team.clubColors" />
-    </div>
+                <div class="form-group">
+                  <label>Barwy klubowe:</label>
+                  <input class="input form-control" 
+                  v-model.trim="$v.team.clubColors.$model"
+                  :class="{'is-invalid' :$v.team.clubColors.$error, 'is-valid':!$v.team.clubColors.$invalid}"/>
+                  <div class="valid-feedback">Barwy klubowe są ok</div>
+                  <div class="invalid-feedback">
+                    <span v-if="!$v.team.clubColors.required">Barwy klubowe są wymagany</span>
+                    <span></span>
+                  </div>
+                </div>
 
     <div class="form-group">
       <label for="stadium.name">Stadion:</label>
@@ -67,6 +85,7 @@
 
 <script>
 import { data } from '../shared';
+import { required, minLength, between } from 'vuelidate/lib/validators';
 
 export default {
   name: "Team-Details",
@@ -79,9 +98,24 @@ export default {
   data() {
     return {
       showMore: false,
-      loading: true,
+      loading: true,   
       team:{},
     };
+  },
+  validations: {
+    team:{
+      name: {
+      required,
+      minLength: minLength(4)
+      },
+      created:{
+        required,
+        between: between(1800, new Date().getFullYear().valueOf())
+      },
+      clubColors:{
+        required,
+      }
+    }
   },
   async created() {
     if (this.isAddMode) {
@@ -154,5 +188,4 @@ color: white !important;
 border-color: #17a2b8 !important;
 background-color: #17a2b8 !important;
 }
-
 </style>

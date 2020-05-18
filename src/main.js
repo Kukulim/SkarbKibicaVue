@@ -5,7 +5,10 @@ import router from './router'
 
 import VuejsDialog from "vuejs-dialog"
 import 'vuejs-dialog/dist/vuejs-dialog.min.css';
-Vue.use(VuejsDialog)
+Vue.use(VuejsDialog);
+
+import Vuelidate from 'vuelidate'
+Vue.use(Vuelidate);
 
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
