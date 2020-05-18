@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1 class="mt-5 mb-3">Skarb Kibica:</h1>
+    <h1 class="mt-5 mb-3">Moje drużyny:</h1>
     <div class="column is-8" v-if="!loading">
       <ul class="list-group">
         <div v-for="team in teams" :key="team.id" class="list-group-item">

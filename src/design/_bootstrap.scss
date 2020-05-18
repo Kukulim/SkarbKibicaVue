@@ -33,3 +33,12 @@ $green: #78C2AD;
         background-color: #571994 !important;
     }
 }
+.btn-warning {
+    color: #fff;
+    background-color: rgb(216, 61, 61) !important;
+    border-color: rgb(216, 61, 61) !important;
+    &:hover{
+        background-color: rgb(224, 24, 24) !important;
+        border-color: rgb(224, 24, 24) !important;
+    }
+}

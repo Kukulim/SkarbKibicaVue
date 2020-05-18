@@ -44,13 +44,13 @@
     <div class="mt-5">
       <button class="btn btn-success m-2" @click="saveTeam()">
         <span>Zapisz</span>
-        <i class="fas fa-save"></i>
+        <i class="fas fa-save ml-2"></i>
       </button>
       <button class="btn btn-info m-2" @click="cancelTeam()">
         <span>Anuluj</span>
-        <i class="fas fa-undo"></i>
+        <i class="fas fa-undo ml-2 "></i>
       </button>
-      <button class="btn btn-warning m-auto" v-confirm="{
+      <button class="btn btn-warning m-2 float-right" v-confirm="{
         ok: this.deleteTeam, 
         message: 'Czy napewno chcesz usunąć drużynę?',
         okText: 'Usuń',
@@ -58,7 +58,7 @@
         }" 
         v-if="team.id" >
         <span>Usuń</span>
-        <i class="fas fa-undo"></i>
+        <i class="fas fa-undo ml-2"></i>
       </button>
     </div>
   </div>
@@ -129,6 +129,7 @@ export default {
   },
 };
 </script>
+
 <style>
 .dg-btn--ok {
 border-color: rgb(216, 61, 61) !important;
