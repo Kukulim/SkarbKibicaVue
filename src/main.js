@@ -3,6 +3,10 @@ import App from './App.vue'
 import "bootstrap";
 import router from './router'
 
+import VuejsDialog from "vuejs-dialog"
+import 'vuejs-dialog/dist/vuejs-dialog.min.css';
+Vue.use(VuejsDialog)
+
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 import { library } from "@fortawesome/fontawesome-svg-core";

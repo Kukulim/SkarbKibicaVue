@@ -50,7 +50,13 @@
         <span>Anuluj</span>
         <i class="fas fa-undo"></i>
       </button>
-      <button class="btn btn-warning m-auto" @click="deleteTeam()" v-if="team.id">
+      <button class="btn btn-warning m-auto" v-confirm="{
+        ok: this.deleteTeam, 
+        message: 'Czy napewno chcesz usunąć drużynę?',
+        okText: 'Usuń',
+        cancelText: 'Anuluj',
+        }" 
+        v-if="team.id" >
         <span>Usuń</span>
         <i class="fas fa-undo"></i>
       </button>
@@ -123,4 +129,29 @@ export default {
   },
 };
 </script>
+<style>
+.dg-btn--ok {
+border-color: rgb(216, 61, 61) !important;
+background-color: rgb(216, 61, 61) !important;
+color: white !important;
+transition: 0.25s ease-in-out;
+}
+.dg-btn--ok:hover {
+color: white !important;
+border-color: rgb(224, 24, 24) !important;
+background-color: rgb(224, 24, 24) !important;
+}
 
+.dg-btn--cancel {
+border-color: #6CC3D5 !important;
+background-color: #6CC3D5 !important;
+color: white !important;
+transition: 0.25s ease-in-out;
+}
+.dg-btn--cancel:hover {
+color: white !important;
+border-color: #17a2b8 !important;
+background-color: #17a2b8 !important;
+}
+
+</style>
