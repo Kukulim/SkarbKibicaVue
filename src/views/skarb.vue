@@ -10,10 +10,19 @@
               <router-link
                 :to="{name: 'team-details', params:{id: team.id}}"
                 tag="button"
+                class="btn btn-secondary float-right"
+              >
+                <span>Edytuj Drużynę</span>
+                <i class="fas fa-edit ml-3"></i>
+              </router-link>
+
+              <router-link
+                :to="{name: 'team-details', params:{id: team.id}}"
+                tag="button"
                 class="btn btn-primary"
               >
-                <span>Szczególy</span>
-                <i class="fas fa-check ml-3"></i>
+                <span class="skarb-link">Skarb kibica</span>
+                <i class="fas fa-futbol fa-2x ml-3"></i>
               </router-link>
             </div>
           </div>
@@ -55,3 +64,8 @@ export default {
   }
 };
 </script>
+<style scoped>
+.skarb-link{
+  font-size: 30px;
+}
+</style>
