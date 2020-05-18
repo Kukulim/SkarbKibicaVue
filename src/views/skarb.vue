@@ -19,12 +19,13 @@
           </div>
         </div>
       </ul>
-      <div class="alert alert-warning" role="alert" v-show="message">{{ message }}</div>
-      <router-link :to="{name: 'team-details', params:{id:0}}" tag="button" class="btn btn-primary m-5 add-button" v-if="!loading">
+    
+      <router-link :to="{name: 'team-details', params:{id:0}}" tag="button" class="btn btn-primary m-5 add-button">
         <span>Dodaj drużynę</span>
         <i class="fa fa-plus ml-3" aria-hidden="true"></i>
       </router-link>
     </div>
+    <div class="alert alert-warning" role="alert" v-show="message">{{ message }}</div>
   </div>
 </template>
 
