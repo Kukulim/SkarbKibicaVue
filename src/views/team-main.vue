@@ -29,7 +29,16 @@
             v-for="teamsquads in team.teamSquads"
             :key="teamsquads.Id"
             >
-                <label class="form-control"> {{ teamsquads.season }} </label>
+
+                <router-link
+                :to="{name: 'team-squad', params:{id: team.id, squadId: teamsquads.teamId}}"
+                tag="button"
+                class="btn btn-secondary"
+              >
+                <span>{{ teamsquads.season }}</span>
+                
+              </router-link>
+
             </div>
       </div>
     </div>
