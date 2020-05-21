@@ -29,19 +29,27 @@
             v-for="teamsquads in team.teamSquads"
             :key="teamsquads.Id"
             >
-
+                <div class="text-center">
                 <router-link
                 :to="{name: 'team-squad', params:{id: team.id ,squadId: teamsquads.season}}"
                 tag="button"
-                class="btn btn-secondary"
+                class="btn btn-primary mt-2 add-button btn-lg"
               >
                 <span>{{ teamsquads.season }}</span>
                 
               </router-link>
+             </div>
 
             </div>
       </div>
     </div>
+            <button
+          class="btn btn-info m-2"
+          @click="cancel()"
+        >
+          <span>Powrót</span>
+          <i class="fas fa-undo ml-2 " />
+        </button>
   </div>
 </template>
 
@@ -69,5 +77,10 @@ export default {
       this.loading = false;
     }
   },
+    methods: {
+    cancel() {
+      this.$router.push({ name: 'skarb' });
+    },
+  }
 };
 </script>
