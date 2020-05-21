@@ -23,6 +23,13 @@ const routes = [
     props: (r) => ({ id: parseInt(r.params.id) }),
   },
   {
+    path: "/skarb/main/:id",
+    name: "team-main",
+    component: () =>
+      import(/* webpackChunkName: "teams" */ "../views/team-main.vue"),
+    props: (r) => ({ id: parseInt(r.params.id) }),
+  },
+  {
     path: "/about",
     name: "About",
     // route level code-splitting

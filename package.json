@@ -32,6 +32,7 @@
     "jquery": "^3.5.1",
     "node-sass": "^4.14.1",
     "popper.js": "^1.16.1",
+    "prettier": "2.0.5",
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.11"
   },

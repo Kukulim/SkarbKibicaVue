@@ -31,7 +31,7 @@
               </router-link>
 
               <router-link
-                :to="{name: 'team-details', params:{id: team.id}}"
+                :to="{name: 'team-main', params:{id: team.id}}"
                 tag="button"
                 class="btn btn-primary"
               >
