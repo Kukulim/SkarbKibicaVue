@@ -2,7 +2,7 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <div class="container">
-        <HeaderBarBrand></HeaderBarBrand>
+        <HeaderBarBrand />
         <button
           class="navbar-toggler"
           type="button"
@@ -12,14 +12,17 @@
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon" />
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <HeaderNav></HeaderNav>
+        <div
+          class="collapse navbar-collapse"
+          id="navbarSupportedContent"
+        >
+          <HeaderNav />
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <HeaderLinks></HeaderLinks>
+              <HeaderLinks />
             </li>
           </ul>
         </div>

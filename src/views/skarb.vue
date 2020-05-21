@@ -1,19 +1,33 @@
 <template>
   <div class="container">
-    <h1 class="mt-5 mb-3">Moje drużyny:</h1>
-    <div class="column is-8" v-if="!loading">
+    <h1 class="mt-5 mb-3">
+      Moje drużyny:
+    </h1>
+    <div
+      class="column is-8"
+      v-if="!loading"
+    >
       <ul class="list-group">
-        <div v-for="team in teams" :key="team.id" class="list-group-item">
+        <div
+          v-for="team in teams"
+          :key="team.id"
+          class="list-group-item"
+        >
           <div class="card">
             <div class="card-body">
-              <h5 :key="team.name" class="card-title">{{ team.name }}</h5>
+              <h5
+                :key="team.name"
+                class="card-title"
+              >
+                {{ team.name }}
+              </h5>
               <router-link
                 :to="{name: 'team-details', params:{id: team.id}}"
                 tag="button"
                 class="btn btn-secondary float-right"
               >
                 <span>Edytuj Drużynę</span>
-                <i class="fas fa-edit ml-3"></i>
+                <i class="fas fa-edit ml-3" />
               </router-link>
 
               <router-link
@@ -22,19 +36,32 @@
                 class="btn btn-primary"
               >
                 <span class="skarb-link">Skarb kibica</span>
-                <i class="fas fa-futbol fa-2x ml-3"></i>
+                <i class="fas fa-futbol fa-2x ml-3" />
               </router-link>
             </div>
           </div>
         </div>
       </ul>
     
-      <router-link :to="{name: 'team-details', params:{id:0}}" tag="button" class="btn btn-primary m-5 add-button">
+      <router-link
+        :to="{name: 'team-details', params:{id:0}}"
+        tag="button"
+        class="btn btn-primary m-5 add-button"
+      >
         <span>Dodaj drużynę</span>
-        <i class="fa fa-plus ml-3" aria-hidden="true"></i>
+        <i
+          class="fa fa-plus ml-3"
+          aria-hidden="true"
+        />
       </router-link>
     </div>
-    <div class="alert alert-warning" role="alert" v-show="message">{{ message }}</div>
+    <div
+      class="alert alert-warning"
+      role="alert"
+      v-show="message"
+    >
+      {{ message }}
+    </div>
   </div>
 </template>
 

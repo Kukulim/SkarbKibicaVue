@@ -1,85 +1,136 @@
 <template>
   <div class="container">
-    <h1 class="mt-5 mb-3">Szczególy klubu:</h1>
-  <div v-if="!loading">
+    <h1 class="mt-5 mb-3">
+      Szczególy klubu:
+    </h1>
+    <div v-if="!loading">
+      <div class="form-group">
+        <label>Nazwa klubu:</label>
+        <input
+          class="input form-control" 
+          v-model.trim="$v.team.name.$model"
+          :class="{'is-invalid' :$v.team.name.$error, 'is-valid':!$v.team.name.$invalid}"
+        >
+        <div class="valid-feedback">
+          Nazwa klubu jest ok
+        </div>
+        <div class="invalid-feedback">
+          <span v-if="!$v.team.name.required">Nzawa klubu jest wymagana</span>
+          <span v-if="!$v.team.name.minLength">Nzawa klubu misi mieć conajmniej {{ $v.team.name.$params.minLength.min }}</span>
+          <span />
+        </div>
+      </div>
 
-                <div class="form-group">
-                  <label>Nazwa klubu:</label>
-                  <input class="input form-control" 
-                  v-model.trim="$v.team.name.$model"
-                  :class="{'is-invalid' :$v.team.name.$error, 'is-valid':!$v.team.name.$invalid}"/>
-                  <div class="valid-feedback">Nazwa klubu jest ok</div>
-                  <div class="invalid-feedback">
-                    <span v-if="!$v.team.name.required">Nzawa klubu jest wymagana</span>
-                    <span v-if="!$v.team.name.minLength">Nzawa klubu misi mieć conajmniej {{ $v.team.name.$params.minLength.min }}</span>
-                    <span></span>
-                  </div>
-                </div>
+      <div class="form-group">
+        <label>Rok załorzenia:</label>
+        <input
+          class="input form-control" 
+          v-model.trim="$v.team.created.$model"
+          :class="{'is-invalid' :$v.team.created.$error, 'is-valid':!$v.team.created.$invalid}"
+        >
+        <div class="valid-feedback">
+          Rok załorzenia jest ok
+        </div>
+        <div class="invalid-feedback">
+          <span v-if="!$v.team.created.required">Rok załorzenia jest wymagany</span>
+          <span />
+        </div>
+      </div>
 
-                <div class="form-group">
-                  <label>Rok załorzenia:</label>
-                  <input class="input form-control" 
-                  v-model.trim="$v.team.created.$model"
-                  :class="{'is-invalid' :$v.team.created.$error, 'is-valid':!$v.team.created.$invalid}"/>
-                  <div class="valid-feedback">Rok załorzenia jest ok</div>
-                  <div class="invalid-feedback">
-                    <span v-if="!$v.team.created.required">Rok załorzenia jest wymagany</span>
-                    <span></span>
-                  </div>
-                </div>
+      <div class="form-group">
+        <label>Barwy klubowe:</label>
+        <input
+          class="input form-control" 
+          v-model.trim="$v.team.clubColors.$model"
+          :class="{'is-invalid' :$v.team.clubColors.$error, 'is-valid':!$v.team.clubColors.$invalid}"
+        >
+        <div class="valid-feedback">
+          Barwy klubowe są ok
+        </div>
+        <div class="invalid-feedback">
+          <span v-if="!$v.team.clubColors.required">Barwy klubowe są wymagany</span>
+          <span />
+        </div>
+      </div>
 
-                <div class="form-group">
-                  <label>Barwy klubowe:</label>
-                  <input class="input form-control" 
-                  v-model.trim="$v.team.clubColors.$model"
-                  :class="{'is-invalid' :$v.team.clubColors.$error, 'is-valid':!$v.team.clubColors.$invalid}"/>
-                  <div class="valid-feedback">Barwy klubowe są ok</div>
-                  <div class="invalid-feedback">
-                    <span v-if="!$v.team.clubColors.required">Barwy klubowe są wymagany</span>
-                    <span></span>
-                  </div>
-                </div>
+      <div class="form-group">
+        <label for="stadium.name">Stadion:</label>
+        <input
+          class="input form-control"
+          id="stadium.name"
+          v-model="team.stadium.name"
+        >
+      </div>
 
-    <div class="form-group">
-      <label for="stadium.name">Stadion:</label>
-      <input class="input form-control" id="stadium.name" v-model="team.stadium.name" />
+      <div
+        class="form-check"
+        v-if="team.id"
+      >
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="showMore"
+          v-model="showMore"
+        >
+        <label
+          for="showMore"
+          class="form-check-label"
+        >Szczególy</label>
+      </div>
+
+      <div
+        class="form-group"
+        v-show="showMore"
+      >
+        <label for="adress">Adress:</label>
+        <input
+          class="input form-control"
+          id="adress"
+          v-model="team.stadium.adress"
+        >
+      </div>
+
+      <div
+        class="form-group"
+        v-show="showMore"
+      >
+        <label for="seats">Ilość miejsc:</label>
+        <input
+          class="input form-control"
+          id="seats"
+          v-model="team.stadium.seats"
+        >
+      </div>
+      <div class="mt-5">
+        <button
+          class="btn btn-success m-2"
+          @click="saveTeam()"
+        >
+          <span>Zapisz</span>
+          <i class="fas fa-save ml-2" />
+        </button>
+        <button
+          class="btn btn-info m-2"
+          @click="cancelTeam()"
+        >
+          <span>Anuluj</span>
+          <i class="fas fa-undo ml-2 " />
+        </button>
+        <button
+          class="btn btn-warning m-2 float-right"
+          v-confirm="{
+            ok: this.deleteTeam, 
+            message: 'Czy napewno chcesz usunąć drużynę?',
+            okText: 'Usuń',
+            cancelText: 'Anuluj',
+          }" 
+          v-if="team.id"
+        >
+          <span>Usuń</span>
+          <i class="fas fa-undo ml-2" />
+        </button>
+      </div>
     </div>
-
-    <div class="form-check" v-if="team.id">
-      <input type="checkbox" class="form-check-input" id="showMore" v-model="showMore" />
-      <label for="showMore" class="form-check-label">Szczególy</label>
-    </div>
-
-    <div class="form-group" v-show="showMore">
-      <label for="adress">Adress:</label>
-      <input class="input form-control" id="adress" v-model="team.stadium.adress" />
-    </div>
-
-    <div class="form-group" v-show="showMore">
-      <label for="seats">Ilość miejsc:</label>
-      <input class="input form-control" id="seats" v-model="team.stadium.seats" />
-    </div>
-    <div class="mt-5">
-      <button class="btn btn-success m-2" @click="saveTeam()">
-        <span>Zapisz</span>
-        <i class="fas fa-save ml-2"></i>
-      </button>
-      <button class="btn btn-info m-2" @click="cancelTeam()">
-        <span>Anuluj</span>
-        <i class="fas fa-undo ml-2 "></i>
-      </button>
-      <button class="btn btn-warning m-2 float-right" v-confirm="{
-        ok: this.deleteTeam, 
-        message: 'Czy napewno chcesz usunąć drużynę?',
-        okText: 'Usuń',
-        cancelText: 'Anuluj',
-        }" 
-        v-if="team.id" >
-        <span>Usuń</span>
-        <i class="fas fa-undo ml-2"></i>
-      </button>
-    </div>
-  </div>
   </div>
 </template>
 
@@ -88,7 +139,7 @@ import { data } from '../shared';
 import { required, minLength, between } from 'vuelidate/lib/validators';
 
 export default {
-  name: "Team-Details",
+  name: "TeamDetails",
   props: {
     id: {
       type: Number,

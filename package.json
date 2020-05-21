@@ -37,10 +37,6 @@
   },
   "eslintConfig": {
     "root": true,
-    "no-mixed-spaces-and-tabs": [
-      2,
-      "smart-tabs"
-    ],
     "env": {
       "node": true
     },
