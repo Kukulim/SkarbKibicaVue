@@ -3,25 +3,36 @@
     <h1 class="mt-5 mb-3">
       witaj ze składów !
     </h1>
-    </div>
+  </div>
 </template>
 
 <script>
-    export default {
-          name: "TeamMain",
+import { data } from "../shared";
+
+export default {
+  name: "TeamMain",
   props: {
     id: {
       type: Number,
       default: 0,
     },
-    squadId:{
+    squadId: {
       type: Number,
       default: 0,
     },
   },
+  data() {
+    return {
+      players: [],
+    };
+  },
+  async created() {
+    {
+      this.players = await data.getPlayers(this.id, this.squadId);
+      console.log("trest")
     }
+  },
+};
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

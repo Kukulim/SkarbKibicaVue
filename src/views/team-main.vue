@@ -23,7 +23,7 @@
 
       </div>
 
-      <div class="col">
+      <div class="col sezons">
         <h2 class="text-center">Sezony:</h2>
             <div
             v-for="teamsquads in team.teamSquads"
@@ -31,7 +31,7 @@
             >
                 <div class="text-center">
                 <router-link
-                :to="{name: 'team-squad', params:{id: team.id ,squadId: teamsquads.season}}"
+                :to="{name: 'team-squad', params:{id: team.id ,squadId: teamsquads.id}}"
                 tag="button"
                 class="btn btn-primary mt-2 add-button btn-lg"
               >
@@ -84,3 +84,10 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+    .add-button{
+        min-width: 300px;
+    }
+
+</style>

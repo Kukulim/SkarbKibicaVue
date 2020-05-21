@@ -49,10 +49,24 @@ const deleteTeam = async function(id){
     return null;
 }};
 
+const getPlayers = async function(teamId, teamSquadId){
+  try {
+    const response = await axios.get(`https://localhost:5001/api/teams/${teamId}/TeamSquads/${teamSquadId}/players`);
+    const players = response.data;
+    if (!response.data) return [];
+    return players;
+  }
+  catch (error) {
+  console.error(error);
+  return [];
+}
+};
+
 export const data = {
     getTeams,
     getTeam,
     updateTeam,
     createTeam,
-    deleteTeam
+    deleteTeam,
+    getPlayers
 }
