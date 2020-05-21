@@ -30,7 +30,7 @@ const routes = [
     props: (r) => ({ id: parseInt(r.params.id) }),
   },
   {
-    path: "/skarb/main/:id/squad/:id",
+    path: "/skarb/main/:id/squad/:squadId",
     name: "team-squad",
     component: () =>
       import(/* webpackChunkName: "teams" */ "../views/team-squad.vue"),

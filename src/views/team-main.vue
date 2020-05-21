@@ -31,7 +31,7 @@
             >
 
                 <router-link
-                :to="{name: 'team-squad', params:{id: team.id, squadId: teamsquads.teamId}}"
+                :to="{name: 'team-squad', params:{id: team.id ,squadId: teamsquads.season}}"
                 tag="button"
                 class="btn btn-secondary"
               >
