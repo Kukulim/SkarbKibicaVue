@@ -62,11 +62,22 @@ const getPlayers = async function(teamId, teamSquadId){
 }
 };
 
+const addTeam = async function(teamId, teamSquad){
+  try {
+    await axios.post(`https://localhost:5001/api/teams/${teamId}/TeamSquads/`, teamSquad, {headers: {"Content-Type": "application/json"}});
+  }
+  catch (error) {
+  console.error(error);
+  return [];
+}
+};
+
 export const data = {
     getTeams,
     getTeam,
     updateTeam,
     createTeam,
     deleteTeam,
-    getPlayers
+    getPlayers,
+    addTeam
 }

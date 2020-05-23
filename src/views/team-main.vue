@@ -38,19 +38,22 @@
           </div>
         </div>
 
-        <div class="new-sezon-form text-center mt-3 mb-3 ml-auto mr-auto">
+        <form v-on:submit.prevent="addNewTeamSquad"
+        class="new-sezon-form text-center mt-3 mb-3 ml-auto mr-auto">
           <label class="col-sm-10 new-sezon-label">Dadaj nowy sezon</label>
           <div class="col-sm-10 text-center m-auto">
             <input
               class="form-control text-center new-sezon-input"
               placeholder="Podaj rok"
+              v-model="newTeamSquad.season"
             />
-            <button class="btn btn-info mt-2 mb-2 add-button" @click="cancel()">
+            <button class="btn btn-info mt-2 mb-2 add-button">
               <span>Dodaj</span>
               <i class="fa fa-plus ml-3" aria-hidden="true" />
             </button>
           </div>
-        </div>
+        </form>
+
       </div>
     </div>
     <button class="btn btn-info m-2" @click="cancel()">
@@ -75,6 +78,9 @@ export default {
     return {
       loading: true,
       team: {},
+      newTeamSquad: {
+        season:undefined,
+      },
     };
   },
 
@@ -88,7 +94,11 @@ export default {
     cancel() {
       this.$router.push({ name: "skarb" });
     },
-  },
+    addNewTeamSquad: async function(){
+      await data.addTeam(this.team.id, this.newTeamSquad);
+      this.team = await data.getTeam(this.id);
+  }
+}
 };
 </script>
 
