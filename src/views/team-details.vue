@@ -127,7 +127,7 @@
           v-if="team.id"
         >
           <span>Usuń</span>
-          <i class="fas fa-undo ml-2" />
+          <i class="fas fa-trash ml-2"></i>
         </button>
       </div>
     </div>

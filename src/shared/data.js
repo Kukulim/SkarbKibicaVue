@@ -71,6 +71,15 @@ const addTeam = async function(teamId, teamSquad){
   return [];
 }
 };
+const deleteTeamSquad = async function(teamId, teamSquadId){
+  try {
+    await axios.delete(`https://localhost:5001/api/teams/${teamId}/TeamSquads/${teamSquadId}`);
+  }
+  catch (error) {
+  console.error(error);
+  return [];
+}
+};
 
 export const data = {
     getTeams,
@@ -79,5 +88,6 @@ export const data = {
     createTeam,
     deleteTeam,
     getPlayers,
-    addTeam
+    addTeam,
+    deleteTeamSquad
 }
