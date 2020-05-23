@@ -3,6 +3,13 @@
     <h1 class="mt-5 mb-3">
       witaj ze składów !
     </h1>
+            <div
+            v-for="player in players"
+            :key="player.id"
+            >
+            {{player.firstName}}
+            
+            </div>
   </div>
 </template>
 
