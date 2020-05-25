@@ -122,6 +122,16 @@
       <span>Powrót</span>
       <i class="fas fa-undo ml-2" />
     </button>
+
+              <router-link
+                :to="{name: 'player-details', params:{}}"
+                tag="button"
+                class="btn btn-secondary add-button"
+              >
+                <span>Dodaj zawodnika</span>
+                <i class="fas fa-edit ml-3" />
+              </router-link>
+
   </div>
 </template>
 
