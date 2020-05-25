@@ -10,6 +10,11 @@ Vue.use(VuejsDialog);
 import Vuelidate from 'vuelidate'
 Vue.use(Vuelidate);
 
+import VCalendar from 'v-calendar';
+Vue.use(VCalendar, {
+  componentPrefix: 'vc'
+});
+
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 import { library } from "@fortawesome/fontawesome-svg-core";

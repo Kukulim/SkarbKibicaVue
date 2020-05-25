@@ -26,7 +26,7 @@
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">Data urodzin:</label>
         <div class="col-sm-10">
-          <input type="text" class="input form-control" value="imię..." />
+          <vc-date-picker v-model="date" color="green" />
         </div>
       </div>
 
@@ -47,13 +47,13 @@
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">Pozycja:</label>
         <div class="col-sm-10">
-        <select id="inputState" class="form-control">
-        <option selected>Wybierz pozycję gracza</option>
-        <option>Bramkarz</option>
-        <option>Obrońca</option>
-        <option>Pomocnik</option>
-        <option>Napastnik</option>
-      </select>
+          <select id="inputState" class="form-control">
+            <option selected>Wybierz pozycję gracza</option>
+            <option>Bramkarz</option>
+            <option>Obrońca</option>
+            <option>Pomocnik</option>
+            <option>Napastnik</option>
+          </select>
         </div>
       </div>
 
@@ -83,6 +83,11 @@ export default {
       type: Number,
       default: 0,
     },
+  },
+  data() {
+    return {
+      date: new Date(),
+    };
   },
   methods: {
     cancel() {
