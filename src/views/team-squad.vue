@@ -29,7 +29,7 @@
             </button>
           </td>
           <td>
-            <button class="btn btn-warning btn-sm" @click="cancel()">
+            <button class="btn btn-warning btn-sm" @click="deletePlayer(player.id)">
               <i class="fas fa-trash"></i>
             </button>
           </td>
@@ -46,8 +46,16 @@
           </th>
           <td>{{ player.birthDate }}</td>
           <td>{{ player.height + "/" + player.weight }}</td>
-          <td></td>
-          <td></td>
+          <td>
+            <button class="btn btn-info btn-sm" @click="cancel()">
+              <i class="fas fa-edit" />
+            </button>
+          </td>
+          <td>
+            <button class="btn btn-warning btn-sm" @click="deletePlayer(player.id)">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
         </tr>
 
         <h5 class="m-2">Pomocnicy:</h5>
@@ -61,8 +69,16 @@
           </th>
           <td>{{ player.birthDate }}</td>
           <td>{{ player.height + "/" + player.weight }}</td>
-          <td></td>
-          <td></td>
+          <td>
+            <button class="btn btn-info btn-sm" @click="cancel()">
+              <i class="fas fa-edit" />
+            </button>
+          </td>
+          <td>
+            <button class="btn btn-warning btn-sm" @click="deletePlayer(player.id)">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
         </tr>
 
         <h5 class="m-2">Napastnicy:</h5>
@@ -76,8 +92,16 @@
           </th>
           <td class="text-center">{{ player.birthDate }}</td>
           <td class="text-center">{{ player.height + "/" + player.weight }}</td>
-          <td></td>
-          <td></td>
+          <td>
+            <button class="btn btn-info btn-sm" @click="cancel()">
+              <i class="fas fa-edit" />
+            </button>
+          </td>
+          <td>
+            <button class="btn btn-warning btn-sm" @click="deletePlayer(player.id)">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -135,6 +159,10 @@ export default {
     async deleteTeamSquad() {
       await data.deleteTeamSquad(this.id, this.squadId);
       this.cancel();
+    },
+    async deletePlayer(playerid) {
+      await data.deletePlayer(this.id, this.squadId, playerid);
+      this.players = await data.getPlayers(this.id, this.squadId);
     },
     getPlayersByPosition(value) {
       return this.players.filter((p) => {
