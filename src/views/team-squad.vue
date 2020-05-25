@@ -136,7 +136,7 @@
     </button>
 
     <router-link
-      :to="{ name: 'player-details', params: {} }"
+      :to="{ name: 'player-details', params: {playerId:0} }"
       tag="button"
       class="btn btn-secondary add-button"
     >

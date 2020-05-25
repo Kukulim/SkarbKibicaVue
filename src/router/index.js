@@ -37,11 +37,11 @@ const routes = [
     props: (r) => ({ id: parseInt(r.params.id), squadId: parseInt(r.params.squadId) }),
   },
   {
-    path: "/skarb/main/:id/squad/:squadId/edit",
+    path: "/skarb/main/:id/squad/:squadId/edit/:playerId",
     name: "player-details",
     component: () =>
       import(/* webpackChunkName: "teams" */ "../views/player-details.vue"),
-    props: (r) => ({ id: parseInt(r.params.id), squadId: parseInt(r.params.squadId) }),
+    props: (r) => ({ id: parseInt(r.params.id), squadId: parseInt(r.params.squadId), playerId: parseInt(r.params.playerId) }),
   },
   {
     path: "/about",

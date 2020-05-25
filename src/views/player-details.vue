@@ -83,6 +83,10 @@ export default {
       type: Number,
       default: 0,
     },
+    playerId: {
+      type: Number,
+      default: 0,
+    },
   },
   data() {
     return {
@@ -92,6 +96,11 @@ export default {
   methods: {
     cancel() {
       this.$router.back();
+    },
+  },
+    computed: {
+    isAddMode() {
+      return !this.playerId;
     },
   },
 };
