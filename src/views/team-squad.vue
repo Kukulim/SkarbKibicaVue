@@ -1,11 +1,28 @@
 <template>
   <div class="container">
     <h1 class="mt-5 mb-3">
-      witaj ze składów !
+      Skład drużyny z roku:
     </h1>
-    <div v-for="player in players" :key="player.id">
+    <h3>Bramkarze:</h3>
+    <div v-for="player in getPlayersByPosition('goalkeeper')" :key="player.id">
       {{ player.firstName }}
     </div>
+
+    <h3>Obrońcy:</h3>
+    <div v-for="player in getPlayersByPosition('defender')" :key="player.id">
+      {{ player.firstName }}
+    </div>
+
+    <h3>Pomocnicy:</h3>
+    <div v-for="player in getPlayersByPosition('midfielder')" :key="player.id">
+      {{ player.firstName }}
+    </div>
+
+    <h3>Napastnicy:</h3>
+    <div v-for="player in getPlayersByPosition('forward')" :key="player.id">
+      {{ player.firstName }}
+    </div>
+
     <button
       class="btn btn-warning m-2 float-right"
       v-confirm="{
@@ -48,7 +65,6 @@ export default {
   async created() {
     {
       this.players = await data.getPlayers(this.id, this.squadId);
-      console.log("trest");
     }
   },
   methods: {
@@ -58,6 +74,11 @@ export default {
     async deleteTeamSquad() {
       await data.deleteTeamSquad(this.id, this.squadId);
       this.cancel();
+    },
+    getPlayersByPosition(value){
+      return this.players.filter( p => {
+      return p.position === value
+    });
     },
   },
 };
