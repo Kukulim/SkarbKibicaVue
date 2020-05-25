@@ -29,7 +29,10 @@
             </button>
           </td>
           <td>
-            <button class="btn btn-warning btn-sm" @click="deletePlayer(player.id)">
+            <button
+              class="btn btn-warning btn-sm"
+              @click="deletePlayer(player.id)"
+            >
               <i class="fas fa-trash"></i>
             </button>
           </td>
@@ -52,7 +55,10 @@
             </button>
           </td>
           <td>
-            <button class="btn btn-warning btn-sm" @click="deletePlayer(player.id)">
+            <button
+              class="btn btn-warning btn-sm"
+              @click="deletePlayer(player.id)"
+            >
               <i class="fas fa-trash"></i>
             </button>
           </td>
@@ -75,7 +81,10 @@
             </button>
           </td>
           <td>
-            <button class="btn btn-warning btn-sm" @click="deletePlayer(player.id)">
+            <button
+              class="btn btn-warning btn-sm"
+              @click="deletePlayer(player.id)"
+            >
               <i class="fas fa-trash"></i>
             </button>
           </td>
@@ -98,7 +107,10 @@
             </button>
           </td>
           <td>
-            <button class="btn btn-warning btn-sm" @click="deletePlayer(player.id)">
+            <button
+              class="btn btn-warning btn-sm"
+              @click="deletePlayer(player.id)"
+            >
               <i class="fas fa-trash"></i>
             </button>
           </td>
@@ -123,15 +135,14 @@
       <i class="fas fa-undo ml-2" />
     </button>
 
-              <router-link
-                :to="{name: 'player-details', params:{}}"
-                tag="button"
-                class="btn btn-secondary add-button"
-              >
-                <span>Dodaj zawodnika</span>
-                <i class="fas fa-edit ml-3" />
-              </router-link>
-
+    <router-link
+      :to="{ name: 'player-details', params: {} }"
+      tag="button"
+      class="btn btn-secondary add-button"
+    >
+      <span>Dodaj zawodnika</span>
+      <i class="fa fa-plus ml-3" aria-hidden="true" />
+    </router-link>
   </div>
 </template>
 
