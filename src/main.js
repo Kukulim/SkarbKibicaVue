@@ -15,6 +15,9 @@ Vue.use(VCalendar, {
   componentPrefix: 'vc'
 });
 
+import VueNumberInput from '@chenfengyuan/vue-number-input';
+Vue.use(VueNumberInput);
+
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 import { library } from "@fortawesome/fontawesome-svg-core";

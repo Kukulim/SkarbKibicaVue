@@ -4,49 +4,49 @@
     <form>
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">Imię:</label>
-        <div class="col-sm-10">
+        <div class="col-sm-4">
           <input type="text" class="input form-control" value="imię..." />
         </div>
       </div>
 
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">Nazwisko:</label>
-        <div class="col-sm-10">
+        <div class="col-sm-4">
           <input type="text" class="input form-control" value="imię..." />
         </div>
       </div>
 
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">Miejsce urodzenia:</label>
-        <div class="col-sm-10">
+        <div class="col-sm-4">
           <input type="text" class="input form-control" value="imię..." />
         </div>
       </div>
 
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">Data urodzin:</label>
-        <div class="col-sm-10">
+        <div class="col-sm-4">
           <vc-date-picker v-model="date" color="green" />
         </div>
       </div>
 
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">Wzrost:</label>
-        <div class="col-sm-10">
-          <input type="text" class="input form-control" value="imię..." />
+        <div class="col-sm-4">
+          <number-input :value="175" :min="150" :max="250" inline controls></number-input>
         </div>
       </div>
 
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">Waga:</label>
-        <div class="col-sm-10">
-          <input type="text" class="input form-control" value="imię..." />
+        <div class="col-sm-4">
+            <number-input :value="75" :min="50" :max="300" inline controls></number-input>
         </div>
       </div>
 
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">Pozycja:</label>
-        <div class="col-sm-10">
+        <div class="col-sm-4">
           <select id="inputState" class="form-control">
             <option selected>Wybierz pozycję gracza</option>
             <option>Bramkarz</option>
@@ -59,8 +59,8 @@
 
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">Numer:</label>
-        <div class="col-sm-10">
-          <input type="text" class="input form-control" value="imię..." />
+        <div class="col-sm-4">
+          <number-input :value="5" :min="0" :max="99" inline controls></number-input>
         </div>
       </div>
     </form>
