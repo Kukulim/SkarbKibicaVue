@@ -71,6 +71,20 @@ const addTeam = async function(teamId, teamSquad){
   return [];
 }
 };
+
+const getTeamSquad = async function(teamId, teamSquadId){
+  try {
+    const response = await axios.get(`https://localhost:5001/api/teams/${teamId}/TeamSquads/${teamSquadId}`);
+    const team = response.data;
+    if (!team) return console.log("bład pusta druzyna");
+    return team;
+  }
+  catch (error) {
+  console.error(error);
+  return [];
+}
+};
+
 const deleteTeamSquad = async function(teamId, teamSquadId){
   try {
     await axios.delete(`https://localhost:5001/api/teams/${teamId}/TeamSquads/${teamSquadId}`);
@@ -89,5 +103,6 @@ export const data = {
     deleteTeam,
     getPlayers,
     addTeam,
+    getTeamSquad,
     deleteTeamSquad
 }

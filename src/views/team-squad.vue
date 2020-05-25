@@ -1,27 +1,86 @@
 <template>
   <div class="container">
-    <h1 class="mt-5 mb-3">
-      Skład drużyny z roku:
-    </h1>
-    <h3>Bramkarze:</h3>
-    <div v-for="player in getPlayersByPosition('goalkeeper')" :key="player.id">
-      {{ player.firstName }}
-    </div>
+    <h1 class="mt-5 mb-3">Skład drużyny z roku {{ this.teamSquad.season }}:</h1>
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr class="text-center">
+          <th scope="col" class="text-left">Imię i Nazwisko</th>
+          <th scope="col">Data urodzenia</th>
+          <th scope="col">Wzrost / Waga</th>
+          <th scope="col">Edytuj</th>
+          <th scope="col">Usuń</th>
+        </tr>
+      </thead>
+      <tbody>
+        <h5 class="m-2">Bramkarze:</h5>
+        <tr
+          v-for="player in getPlayersByPosition('goalkeeper')"
+          :key="player.id"
+          class="text-center"
+        >
+          <th scope="row" class="text-left">
+            {{ player.firstName + " " + player.lastName }}
+          </th>
+          <td>{{ player.birthDate }}</td>
+          <td>{{ player.height + "/" + player.weight }}</td>
+          <td>
+            <button class="btn btn-info btn-sm" @click="cancel()">
+              <i class="fas fa-edit" />
+            </button>
+          </td>
+          <td>
+            <button class="btn btn-warning btn-sm" @click="cancel()">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>
 
-    <h3>Obrońcy:</h3>
-    <div v-for="player in getPlayersByPosition('defender')" :key="player.id">
-      {{ player.firstName }}
-    </div>
+        <h5 class="m-2">Obrońcy:</h5>
+        <tr
+          v-for="player in getPlayersByPosition('defender')"
+          :key="player.id"
+          class="text-center"
+        >
+          <th scope="row" class="text-left">
+            {{ player.firstName + " " + player.lastName }}
+          </th>
+          <td>{{ player.birthDate }}</td>
+          <td>{{ player.height + "/" + player.weight }}</td>
+          <td></td>
+          <td></td>
+        </tr>
 
-    <h3>Pomocnicy:</h3>
-    <div v-for="player in getPlayersByPosition('midfielder')" :key="player.id">
-      {{ player.firstName }}
-    </div>
+        <h5 class="m-2">Pomocnicy:</h5>
+        <tr
+          v-for="player in getPlayersByPosition('midfielder')"
+          :key="player.id"
+          class="text-center"
+        >
+          <th scope="row" class="text-left">
+            {{ player.firstName + " " + player.lastName }}
+          </th>
+          <td>{{ player.birthDate }}</td>
+          <td>{{ player.height + "/" + player.weight }}</td>
+          <td></td>
+          <td></td>
+        </tr>
 
-    <h3>Napastnicy:</h3>
-    <div v-for="player in getPlayersByPosition('forward')" :key="player.id">
-      {{ player.firstName }}
-    </div>
+        <h5 class="m-2">Napastnicy:</h5>
+        <tr
+          v-for="player in getPlayersByPosition('forward')"
+          :key="player.id"
+          class="text-center"
+        >
+          <th scope="row" class="text-left">
+            {{ player.firstName + " " + player.lastName }}
+          </th>
+          <td class="text-center">{{ player.birthDate }}</td>
+          <td class="text-center">{{ player.height + "/" + player.weight }}</td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
 
     <button
       class="btn btn-warning m-2 float-right"
@@ -35,7 +94,7 @@
       <span>Usuń całą drużynę</span>
       <i class="fas fa-trash ml-2"></i>
     </button>
-        <button class="btn btn-info m-2" @click="cancel()">
+    <button class="btn btn-info m-2" @click="cancel()">
       <span>Powrót</span>
       <i class="fas fa-undo ml-2" />
     </button>
@@ -60,25 +119,27 @@ export default {
   data() {
     return {
       players: [],
+      teamSquad: {},
     };
   },
   async created() {
     {
       this.players = await data.getPlayers(this.id, this.squadId);
+      this.teamSquad = await data.getTeamSquad(this.id, this.squadId);
     }
   },
   methods: {
     cancel() {
-      this.$router.back()
+      this.$router.back();
     },
     async deleteTeamSquad() {
       await data.deleteTeamSquad(this.id, this.squadId);
       this.cancel();
     },
-    getPlayersByPosition(value){
-      return this.players.filter( p => {
-      return p.position === value
-    });
+    getPlayersByPosition(value) {
+      return this.players.filter((p) => {
+        return p.position === value;
+      });
     },
   },
 };
