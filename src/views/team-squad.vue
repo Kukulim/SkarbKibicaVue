@@ -14,7 +14,7 @@
       <tbody>
         <h5 class="m-2">Bramkarze:</h5>
         <tr
-          v-for="player in getPlayersByPosition('goalkeeper')"
+          v-for="player in getPlayersByPosition('Bramkarz')"
           :key="player.id"
           class="text-center"
         >
@@ -24,9 +24,13 @@
           <td>{{ player.birthDate }}</td>
           <td>{{ player.height + "/" + player.weight }}</td>
           <td>
-            <button class="btn btn-info btn-sm" @click="cancel()">
+            <router-link
+              :to="{ name: 'player-details', params: { playerId: player.id } }"
+              tag="button"
+              class="btn btn-info btn-sm"
+            >
               <i class="fas fa-edit" />
-            </button>
+            </router-link>
           </td>
           <td>
             <button
@@ -40,7 +44,7 @@
 
         <h5 class="m-2">Obrońcy:</h5>
         <tr
-          v-for="player in getPlayersByPosition('defender')"
+          v-for="player in getPlayersByPosition('Obrońca')"
           :key="player.id"
           class="text-center"
         >
@@ -50,9 +54,13 @@
           <td>{{ player.birthDate }}</td>
           <td>{{ player.height + "/" + player.weight }}</td>
           <td>
-            <button class="btn btn-info btn-sm" @click="cancel()">
+            <router-link
+              :to="{ name: 'player-details', params: { playerId: player.id } }"
+              tag="button"
+              class="btn btn-info btn-sm"
+            >
               <i class="fas fa-edit" />
-            </button>
+            </router-link>
           </td>
           <td>
             <button
@@ -66,7 +74,7 @@
 
         <h5 class="m-2">Pomocnicy:</h5>
         <tr
-          v-for="player in getPlayersByPosition('midfielder')"
+          v-for="player in getPlayersByPosition('Pomocnik')"
           :key="player.id"
           class="text-center"
         >
@@ -76,9 +84,13 @@
           <td>{{ player.birthDate }}</td>
           <td>{{ player.height + "/" + player.weight }}</td>
           <td>
-            <button class="btn btn-info btn-sm" @click="cancel()">
+            <router-link
+              :to="{ name: 'player-details', params: { playerId: player.id } }"
+              tag="button"
+              class="btn btn-info btn-sm"
+            >
               <i class="fas fa-edit" />
-            </button>
+            </router-link>
           </td>
           <td>
             <button
@@ -92,7 +104,7 @@
 
         <h5 class="m-2">Napastnicy:</h5>
         <tr
-          v-for="player in getPlayersByPosition('forward')"
+          v-for="player in getPlayersByPosition('Napastnik')"
           :key="player.id"
           class="text-center"
         >
@@ -102,9 +114,13 @@
           <td class="text-center">{{ player.birthDate }}</td>
           <td class="text-center">{{ player.height + "/" + player.weight }}</td>
           <td>
-            <button class="btn btn-info btn-sm" @click="cancel()">
+            <router-link
+              :to="{ name: 'player-details', params: { playerId: player.id } }"
+              tag="button"
+              class="btn btn-info btn-sm"
+            >
               <i class="fas fa-edit" />
-            </button>
+            </router-link>
           </td>
           <td>
             <button
@@ -136,7 +152,7 @@
     </button>
 
     <router-link
-      :to="{ name: 'player-details', params: {playerId:0} }"
+      :to="{ name: 'player-details', params: { playerId: 0 } }"
       tag="button"
       class="btn btn-secondary add-button"
     >
