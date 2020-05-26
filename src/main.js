@@ -18,6 +18,8 @@ Vue.use(VCalendar, {
 import VueNumberInput from '@chenfengyuan/vue-number-input';
 Vue.use(VueNumberInput);
 
+Vue.use(require('vue-moment'));
+
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 import { library } from "@fortawesome/fontawesome-svg-core";

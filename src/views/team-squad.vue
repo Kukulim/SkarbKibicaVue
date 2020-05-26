@@ -21,7 +21,7 @@
           <th scope="row" class="text-left">
             {{ player.firstName + " " + player.lastName }}
           </th>
-          <td>{{ player.birthDate }}</td>
+          <td>{{ player.birthDate | moment("calendar") }}</td>
           <td>{{ player.height + "/" + player.weight }}</td>
           <td>
             <router-link
@@ -51,7 +51,7 @@
           <th scope="row" class="text-left">
             {{ player.firstName + " " + player.lastName }}
           </th>
-          <td>{{ player.birthDate }}</td>
+          <td>{{ player.birthDate | moment("calendar") }}</td>
           <td>{{ player.height + "/" + player.weight }}</td>
           <td>
             <router-link
@@ -81,7 +81,7 @@
           <th scope="row" class="text-left">
             {{ player.firstName + " " + player.lastName }}
           </th>
-          <td>{{ player.birthDate }}</td>
+          <td>{{ player.birthDate | moment("calendar") }}</td>
           <td>{{ player.height + "/" + player.weight }}</td>
           <td>
             <router-link
@@ -111,7 +111,7 @@
           <th scope="row" class="text-left">
             {{ player.firstName + " " + player.lastName }}
           </th>
-          <td class="text-center">{{ player.birthDate }}</td>
+          <td class="text-center">{{ player.birthDate  | moment("calendar")}}</td>
           <td class="text-center">{{ player.height + "/" + player.weight }}</td>
           <td>
             <router-link

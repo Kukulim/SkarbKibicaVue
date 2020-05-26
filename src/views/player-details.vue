@@ -99,7 +99,6 @@ export default {
   },
   data() {
     return {
-      date: new Date(),
       player: {},
       loading: true,
     };
@@ -120,7 +119,8 @@ export default {
       this.loading = false;
     } else {
     this.player = await data.getPlayer(this.id, this.squadId, this.playerId);
-    this.loading = false;
+    this.player.birthDate = new Date(this.player.birthDate);
+
     }
   },
   methods: {
