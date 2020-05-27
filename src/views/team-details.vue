@@ -203,7 +203,7 @@ export default {
       }
     },
     async deleteTeam(){
-      await data.deleteTeam(this.team.id);
+      await data.deleteTeam(this.team);
       this.cancelTeam();
     },
   },
