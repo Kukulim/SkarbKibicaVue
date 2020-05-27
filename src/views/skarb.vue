@@ -66,13 +66,14 @@
 </template>
 
 <script>
-import { data } from "../shared";
+import { mapActions, mapState } from 'vuex';
+//import { data } from "../shared";
 
 export default {
   name: "Teams",
   data() {
     return {
-      teams: [],
+      //teams: [],
       loading: true,
       message: ""
     };
@@ -82,15 +83,21 @@ export default {
     this.loading = false;
   },
   methods: {
+    ...mapActions(['getTeamsAction']),
     async loadTeams() {
-      this.teams = [];
-      this.message = "Pobieranie danych z bazy, proszę czekać...";
-      this.teams = await data.getTeams();
+//      this.teams = [];
+//      this.message = "Pobieranie danych z bazy, proszę czekać...";
+//      this.teams = await data.getTeams();
+    await this.getTeamsAction();
       this.message = "";
     }
-  }
+  },
+    computed: {
+    ...mapState(['teams']),
+    },
 };
 </script>
+
 <style scoped>
 .skarb-link{
   font-size: 30px;
