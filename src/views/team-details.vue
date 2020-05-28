@@ -4,60 +4,39 @@
       Szczególy klubu:
     </h1>
     <div v-if="!loading">
-      <div class="form-group">
-        <label>Nazwa klubu:</label>
+
+                    <div class="form-group">
+        <label for="stadium.name">Nazwa klubu:</label>
         <input
-          class="input form-control" 
-          v-model.trim="$v.team.name.$model"
-          :class="{'is-invalid' :$v.team.name.$error, 'is-valid':!$v.team.name.$invalid}"
+          class="input form-control"
+
+          v-model="team.name"
         >
-        <div class="valid-feedback">
-          Nazwa klubu jest ok
-        </div>
-        <div class="invalid-feedback">
-          <span v-if="!$v.team.name.required">Nzawa klubu jest wymagana</span>
-          <span v-if="!$v.team.name.minLength">Nzawa klubu misi mieć conajmniej {{ $v.team.name.$params.minLength.min }}</span>
-          <span />
-        </div>
       </div>
 
-      <div class="form-group">
-        <label>Rok załorzenia:</label>
+            <div class="form-group">
+        <label for="stadium.name">Rok załorzenia:</label>
         <input
-          class="input form-control" 
-          v-model.trim="$v.team.created.$model"
-          :class="{'is-invalid' :$v.team.created.$error, 'is-valid':!$v.team.created.$invalid}"
+          class="input form-control"
+
+          v-model="team.created"
         >
-        <div class="valid-feedback">
-          Rok załorzenia jest ok
-        </div>
-        <div class="invalid-feedback">
-          <span v-if="!$v.team.created.required">Rok załorzenia jest wymagany</span>
-          <span />
-        </div>
       </div>
 
-      <div class="form-group">
-        <label>Barwy klubowe:</label>
+            <div class="form-group">
+        <label for="stadium.name">Barwy klubu:</label>
         <input
-          class="input form-control" 
-          v-model.trim="$v.team.clubColors.$model"
-          :class="{'is-invalid' :$v.team.clubColors.$error, 'is-valid':!$v.team.clubColors.$invalid}"
+          class="input form-control"
+
+          v-model="team.clubColors"
         >
-        <div class="valid-feedback">
-          Barwy klubowe są ok
-        </div>
-        <div class="invalid-feedback">
-          <span v-if="!$v.team.clubColors.required">Barwy klubowe są wymagany</span>
-          <span />
-        </div>
       </div>
 
       <div class="form-group">
         <label for="stadium.name">Stadion:</label>
         <input
           class="input form-control"
-          id="stadium.name"
+
           v-model="team.stadium.name"
         >
       </div>
@@ -135,8 +114,8 @@
 </template>
 
 <script>
-import { data } from '../shared';
-import { required, minLength, between } from 'vuelidate/lib/validators';
+//import { data } from '../shared';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: "TeamDetails",
@@ -152,21 +131,6 @@ export default {
       loading: true,   
       team:{},
     };
-  },
-  validations: {
-    team:{
-      name: {
-      required,
-      minLength: minLength(4)
-      },
-      created:{
-        required,
-        between: between(1800, new Date().getFullYear().valueOf())
-      },
-      clubColors:{
-        required,
-      }
-    }
   },
   async created() {
     if (this.isAddMode) {
@@ -184,30 +148,32 @@ export default {
       this.loading = false;
       this.showMore = true;
     } else {
-    this.team = await data.getTeam(this.id);
+    this.team = { ...this.getTeamById(this.id) };
     this.loading = false;
     }
   },
   methods: {
+    ...mapActions('teams', ['updateTeamAction', 'addTeamAction', 'deleteTeamAction']),
     cancelTeam() {
       this.$router.push({ name: 'skarb' });
     },
     async saveTeam() {
       if(this.isAddMode){
-        await data.createTeam(this.team);
+        await this.addTeamAction(this.team);
         this.cancelTeam();
       }
       else{
-      await data.updateTeam(this.team);
+      await this.updateTeamAction(this.team);
       this.cancelTeam();
       }
     },
     async deleteTeam(){
-      await data.deleteTeam(this.team);
+      await this.deleteTeamAction(this.team);
       this.cancelTeam();
     },
   },
   computed: {
+    ...mapGetters('teams', ['getTeamById']),
     isAddMode() {
       return !this.id;
     },

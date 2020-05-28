@@ -27,13 +27,13 @@ export default {
       const deletedTeamSquadId = await data.deleteTeam(teamId, teamSquad);
       commit("deleteTeamSquad", deletedTeamSquadId);
     },
-    async getTeamsSquadAction({ commit }, teamId) {
+    async getTeamSquadsAction({ commit }, teamId) {
       const teamSquads = await data.getTeamSquads(teamId);
       commit("getTeamSquads", teamSquads);
     },
   },
 
   getters: {
-    getTeamSquadById: (state) => (id) => state.teamSquads.find((t) => t.id === id),
+    getTeamSquadById: (state) => (id) => state.teamSquads.filter((t) => t.teamId === id),
   },
 };

@@ -27,7 +27,9 @@ const getTeam = async function(id){
 
 const updateTeam = async function(team){
   try{
-    await axios.put(`/api/teams/${team.id}`, team, {headers: {"Content-Type": "application/json"}});
+    const response = await axios.put(`/api/teams/${team.id}`, team, {headers: {"Content-Type": "application/json"}});
+    const teamToReturn = response.data;
+    return teamToReturn;
   } catch (error) {
     console.error(error);
     return null;
@@ -35,7 +37,9 @@ const updateTeam = async function(team){
 
 const createTeam = async function(team){
   try{
-    await axios.post(`/api/teams/`, team, {headers: {"Content-Type": "application/json"}});
+    const response = await axios.post(`/api/teams/`, team, {headers: {"Content-Type": "application/json"}});
+    const teamToReturn = response.data;
+    return teamToReturn;
   } catch (error) {
     console.error(error);
     return null;
@@ -123,6 +127,18 @@ const getTeamSquad = async function(teamId, teamSquadId){
 }
 };
 
+const getTeamSquads = async function(teamId){
+  try {
+    const response = await axios.get(`/api/teams/${teamId}/TeamSquads/`);
+    const teamSquads = response.data;
+    return teamSquads;
+  }
+  catch (error) {
+  console.error(error);
+  return [];
+}
+};
+
 const deleteTeamSquad = async function(teamId, teamSquad){
   try {
     await axios.delete(`/api/teams/${teamId}/TeamSquads/${teamSquad.id}`);
@@ -147,5 +163,6 @@ export const data = {
     updatePlayer,
     deletePlayer,
     getTeamSquad,
+    getTeamSquads,
     deleteTeamSquad
 }
