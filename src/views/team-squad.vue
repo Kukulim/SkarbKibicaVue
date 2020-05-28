@@ -194,7 +194,7 @@ export default {
       this.$router.back();
     },
     async deleteTeamSquad() {
-      await data.deleteTeamSquad(this.id, this.squadId);
+      await data.deleteTeamSquad(this.id, this.teamSquad);
       this.cancel();
     },
     async deletePlayer(playerid) {

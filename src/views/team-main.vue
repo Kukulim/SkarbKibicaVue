@@ -95,7 +95,7 @@ export default {
       this.$router.push({ name: "skarb" });
     },
     addNewTeamSquad: async function(){
-      await data.addTeam(this.team.id, this.newTeamSquad);
+      await data.addTeamSquad(this.team.id, this.newTeamSquad);
       this.team = await data.getTeam(this.id);
   }
 }

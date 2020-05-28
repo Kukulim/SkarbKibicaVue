@@ -36,7 +36,7 @@ export default {
       const teams = await data.getTeams();
       commit("getTeams", teams);
     },
-    async updateHeroAction({ commit }, team) {
+    async updateTeamAction({ commit }, team) {
       const updatedteam = await data.updateTeam(team);
       commit("updateTeam", updatedteam);
     },

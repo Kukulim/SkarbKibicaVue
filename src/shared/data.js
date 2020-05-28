@@ -100,7 +100,7 @@ const deletePlayer = async function(teamId, teamSquadId, id){
     return null;
 }};
 
-const addTeam = async function(teamId, teamSquad){
+const addTeamSquad = async function(teamId, teamSquad){
   try {
     await axios.post(`/api/teams/${teamId}/TeamSquads/`, teamSquad, {headers: {"Content-Type": "application/json"}});
   }
@@ -123,9 +123,10 @@ const getTeamSquad = async function(teamId, teamSquadId){
 }
 };
 
-const deleteTeamSquad = async function(teamId, teamSquadId){
+const deleteTeamSquad = async function(teamId, teamSquad){
   try {
-    await axios.delete(`/api/teams/${teamId}/TeamSquads/${teamSquadId}`);
+    await axios.delete(`/api/teams/${teamId}/TeamSquads/${teamSquad.id}`);
+    return teamSquad.id;
   }
   catch (error) {
   console.error(error);
@@ -137,7 +138,7 @@ export const data = {
     getTeams,
     getTeam,
     updateTeam,
-    addTeam,
+    addTeamSquad,
     createTeam,
     deleteTeam,
     getPlayers,
