@@ -2,7 +2,7 @@ import * as axios from 'axios';
 
 const getTeams = async function(){
     try {
-      const response = await axios.get('https://localhost:5001/api/teams');
+      const response = await axios.get('/api/teams');
       const teams = response.data;
       if (!response.data) return [];
       return teams;
@@ -15,7 +15,7 @@ const getTeams = async function(){
 
 const getTeam = async function(id){
   try {
-    const response = await axios.get(`https://localhost:5001/api/teams/${id}`);
+    const response = await axios.get(`/api/teams/${id}`);
     const team = response.data;
     if (!team) return console.log("bład pusta druzyna");
     return team;
@@ -27,7 +27,7 @@ const getTeam = async function(id){
 
 const updateTeam = async function(team){
   try{
-    await axios.put(`https://localhost:5001/api/teams/${team.id}`, team, {headers: {"Content-Type": "application/json"}});
+    await axios.put(`/api/teams/${team.id}`, team, {headers: {"Content-Type": "application/json"}});
   } catch (error) {
     console.error(error);
     return null;
@@ -35,7 +35,7 @@ const updateTeam = async function(team){
 
 const createTeam = async function(team){
   try{
-    await axios.post(`https://localhost:5001/api/teams/`, team, {headers: {"Content-Type": "application/json"}});
+    await axios.post(`/api/teams/`, team, {headers: {"Content-Type": "application/json"}});
   } catch (error) {
     console.error(error);
     return null;
@@ -43,7 +43,7 @@ const createTeam = async function(team){
 
 const deleteTeam = async function(team){
   try{
-    await axios.delete(`https://localhost:5001/api/teams/${team.id}`);
+    await axios.delete(`/api/teams/${team.id}`);
     return team.id;
   } catch (error) {
     console.error(error);
@@ -52,7 +52,7 @@ const deleteTeam = async function(team){
 
 const getPlayers = async function(teamId, teamSquadId){
   try {
-    const response = await axios.get(`https://localhost:5001/api/teams/${teamId}/TeamSquads/${teamSquadId}/players`);
+    const response = await axios.get(`/api/teams/${teamId}/TeamSquads/${teamSquadId}/players`);
     const players = response.data;
     if (!response.data) return [];
     return players;
@@ -65,7 +65,7 @@ const getPlayers = async function(teamId, teamSquadId){
 
 const getPlayer = async function(teamId, teamSquadId, playerId){
   try {
-    const response = await axios.get(`https://localhost:5001/api/teams/${teamId}/TeamSquads/${teamSquadId}/players/${playerId}`);
+    const response = await axios.get(`/api/teams/${teamId}/TeamSquads/${teamSquadId}/players/${playerId}`);
     const player = response.data;
     if (!response.data) return {};
     return player;
@@ -78,7 +78,7 @@ const getPlayer = async function(teamId, teamSquadId, playerId){
 
 const createPlayer = async function(teamId, teamSquadId, player){
   try{
-    await axios.post(`https://localhost:5001/api/teams/${teamId}/TeamSquads/${teamSquadId}/players/`, player, {headers: {"Content-Type": "application/json"}});
+    await axios.post(`/api/teams/${teamId}/TeamSquads/${teamSquadId}/players/`, player, {headers: {"Content-Type": "application/json"}});
   } catch (error) {
     console.error(error);
     return null;
@@ -86,7 +86,7 @@ const createPlayer = async function(teamId, teamSquadId, player){
 
 const updatePlayer = async function(teamId, teamSquadId,playerId, player){
   try{
-    await axios.put(`https://localhost:5001/api/teams/${teamId}/TeamSquads/${teamSquadId}/players/${playerId}`, player, {headers: {"Content-Type": "application/json"}});
+    await axios.put(`/api/teams/${teamId}/TeamSquads/${teamSquadId}/players/${playerId}`, player, {headers: {"Content-Type": "application/json"}});
   } catch (error) {
     console.error(error);
     return null;
@@ -94,7 +94,7 @@ const updatePlayer = async function(teamId, teamSquadId,playerId, player){
 
 const deletePlayer = async function(teamId, teamSquadId, id){
   try{
-    await axios.delete(`https://localhost:5001/api/teams/${teamId}/TeamSquads/${teamSquadId}/players/${id}`);
+    await axios.delete(`/api/teams/${teamId}/TeamSquads/${teamSquadId}/players/${id}`);
   } catch (error) {
     console.error(error);
     return null;
@@ -102,7 +102,7 @@ const deletePlayer = async function(teamId, teamSquadId, id){
 
 const addTeam = async function(teamId, teamSquad){
   try {
-    await axios.post(`https://localhost:5001/api/teams/${teamId}/TeamSquads/`, teamSquad, {headers: {"Content-Type": "application/json"}});
+    await axios.post(`/api/teams/${teamId}/TeamSquads/`, teamSquad, {headers: {"Content-Type": "application/json"}});
   }
   catch (error) {
   console.error(error);
@@ -112,7 +112,7 @@ const addTeam = async function(teamId, teamSquad){
 
 const getTeamSquad = async function(teamId, teamSquadId){
   try {
-    const response = await axios.get(`https://localhost:5001/api/teams/${teamId}/TeamSquads/${teamSquadId}`);
+    const response = await axios.get(`/api/teams/${teamId}/TeamSquads/${teamSquadId}`);
     const team = response.data;
     if (!team) return console.log("bład pusta druzyna");
     return team;
@@ -125,7 +125,7 @@ const getTeamSquad = async function(teamId, teamSquadId){
 
 const deleteTeamSquad = async function(teamId, teamSquadId){
   try {
-    await axios.delete(`https://localhost:5001/api/teams/${teamId}/TeamSquads/${teamSquadId}`);
+    await axios.delete(`/api/teams/${teamId}/TeamSquads/${teamSquadId}`);
   }
   catch (error) {
   console.error(error);

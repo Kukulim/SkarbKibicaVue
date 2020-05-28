@@ -86,7 +86,7 @@ export default {
     ...mapActions(['getTeamsAction']),
     async loadTeams() {
 //      this.teams = [];
-//      this.message = "Pobieranie danych z bazy, proszę czekać...";
+      this.message = "Pobieranie danych z bazy, proszę czekać...";
 //      this.teams = await data.getTeams();
     await this.getTeamsAction();
       this.message = "";
