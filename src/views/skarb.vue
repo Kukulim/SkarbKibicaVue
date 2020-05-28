@@ -83,7 +83,7 @@ export default {
     this.loading = false;
   },
   methods: {
-    ...mapActions(['getTeamsAction']),
+    ...mapActions('teams', ['getTeamsAction']),
     async loadTeams() {
 //      this.teams = [];
       this.message = "Pobieranie danych z bazy, proszę czekać...";
@@ -93,7 +93,7 @@ export default {
     }
   },
     computed: {
-    ...mapState(['teams']),
+    ...mapState('teams',['teams']),
     },
 };
 </script>
