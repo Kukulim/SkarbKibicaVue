@@ -106,11 +106,13 @@ const deletePlayer = async function(teamId, teamSquadId, id){
 
 const addTeamSquad = async function(teamId, teamSquad){
   try {
-    await axios.post(`/api/teams/${teamId}/TeamSquads/`, teamSquad, {headers: {"Content-Type": "application/json"}});
+    const response = await axios.post(`/api/teams/${teamId}/TeamSquads/`, teamSquad, {headers: {"Content-Type": "application/json"}});
+    const teamSquadToReturn = response.data;
+    return teamSquadToReturn;
   }
   catch (error) {
   console.error(error);
-  return [];
+  return null;
 }
 };
 

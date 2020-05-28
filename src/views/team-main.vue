@@ -64,7 +64,8 @@
 </template>
 
 <script>
-import { data } from "../shared";
+import { mapActions, mapGetters } from 'vuex';
+//import { data } from "../shared";
 
 export default {
   name: "TeamMain",
@@ -84,9 +85,11 @@ export default {
     };
   },
 
-  async created() {
+  created() {
     {
-      this.team = await data.getTeam(this.id);
+      this.team = { ...this.getTeamById(this.id) };
+      this.getTeamSquadsAction(this.id)
+      this.team.teamSquads = { ...this.getTeamSquadById(this.team.id) };
       this.loading = false;
     }
   },
@@ -94,11 +97,16 @@ export default {
     cancel() {
       this.$router.push({ name: "skarb" });
     },
+    ...mapActions('teamSquads', ['addTeamSquadAction', 'getTeamSquadsAction']),
     addNewTeamSquad: async function(){
-      await data.addTeamSquad(this.team.id, this.newTeamSquad);
-      this.team = await data.getTeam(this.id);
+      await this.addTeamSquadAction(this.team.id, this.newTeamSquad);
+      this.team = { ...this.getTeamById(this.team.id) };
   }
-}
+},
+    computed: {
+    ...mapGetters('teams',['getTeamById']),
+    ...mapGetters('teamSquads',['getTeamSquadById']),   
+    },
 };
 </script>
 
