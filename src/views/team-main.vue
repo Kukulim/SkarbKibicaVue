@@ -85,10 +85,10 @@ export default {
     };
   },
 
-  created() {
+   async created() {
     {
       this.team = { ...this.getTeamById(this.id) };
-      this.getTeamSquadsAction(this.id)
+      await this.getTeamSquadsAction(this.id)
       this.team.teamSquads = { ...this.getTeamSquadById(this.team.id) };
       this.loading = false;
     }
@@ -98,9 +98,10 @@ export default {
       this.$router.push({ name: "skarb" });
     },
     ...mapActions('teamSquads', ['addTeamSquadAction', 'getTeamSquadsAction']),
-    addNewTeamSquad: async function(){
-      await this.addTeamSquadAction(this.team.id, this.newTeamSquad);
-      this.team = { ...this.getTeamById(this.team.id) };
+    addNewTeamSquad: function(){
+      //await data.addTeamSquad(this.id, this.newTeamSquad); //to działa
+       this.addTeamSquadAction(this.id, this.newTeamSquad);
+      //this.team = { ...this.getTeamById(this.id) };
   }
 },
     computed: {
