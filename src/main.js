@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
-import "bootstrap";
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import router from './router'
+
+Vue.use(BootstrapVue)
+Vue.use(IconsPlugin)
 
 import VuejsDialog from "vuejs-dialog"
 import 'vuejs-dialog/dist/vuejs-dialog.min.css';
@@ -19,8 +22,6 @@ import VueNumberInput from '@chenfengyuan/vue-number-input';
 Vue.use(VueNumberInput);
 
 Vue.use(require('vue-moment'));
-
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
