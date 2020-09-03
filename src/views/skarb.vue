@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <title>Title from vue-headful</title>
     <h1 class="mt-5 mb-3">
       Moje drużyny:
     </h1>
