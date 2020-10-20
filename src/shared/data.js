@@ -4,7 +4,7 @@ const server = "http://skar.kibica.api.hostingasp.pl/";
 
 const getTeams = async function(){
     try {
-      const response = await axios.get(`http://skar.kibica.api.hostingasp.pl/api/teams`);
+      const response = await axios.get(`${server}api/teams`);
       const teams = response.data;
       if (!response.data) return [];
       return teams;
