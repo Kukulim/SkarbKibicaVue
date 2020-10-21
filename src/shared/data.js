@@ -1,6 +1,6 @@
 import * as axios from 'axios';
 
-const server = "skar.kibica.api.hostingasp.pl/";
+const server = "https//google.pl";
 
 const getTeams = async function(){
     try {
